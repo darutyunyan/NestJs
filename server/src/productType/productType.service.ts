@@ -15,10 +15,9 @@ export class ProductTypeService {
     }
 
     async getAll(): Promise<ProductType[]> {
-        const productTypes = await this.productTypeModel.find();
+        const productTypes = await this.productTypeModel.find().populate('productNames');
         return productTypes;
     }
-
     
     async delete(id: ObjectId): Promise<ObjectId> {
         const productType = await this.productTypeModel.findByIdAndDelete(id);
