@@ -9,7 +9,6 @@ import { ProductType, ProductTypeSchema } from "./schemas/product-type.schema";
     imports: [MongooseModule.forFeature([{ name: ProductType.name, schema: ProductTypeSchema }])],
     controllers: [ProductTypeController],
     providers: [ProductTypeService]
-
 })
 export class ProductTypeModule { }
 
