@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, ObjectId } from "mongoose";
 import { CreateProductTypeDto } from "./dto/create-product-type.dto";
-import { ProductType, ProductTypeDocument } from "./schemas/productType.schema";
+import { ProductType, ProductTypeDocument } from "./schemas/product-type.schema";
 
 @Injectable()
 export class ProductTypeService {

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ObjectId } from 'mongoose';
 import { CreateProductTypeDto } from './dto/create-product-type.dto';
-import { ProductTypeService } from './productType.service';
+import { ProductTypeService } from './product-type.service';
 
 @Controller('/productType')
 export class ProductTypeController {

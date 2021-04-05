@@ -1,10 +1,10 @@
 
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { ProductType, ProductTypeSchema } from "src/productType/schemas/productType.schema";
-import { ProductNameController } from "./productName.controller";
-import { ProductNameService } from "./productName.service";
-import { ProductName, ProductNameSchema } from "./schemas/productName.schema";
+import { ProductType, ProductTypeSchema } from "src/productType/schemas/product-type.schema";
+import { ProductNameController } from "./product-name.controller";
+import { ProductNameService } from "./product-name.service";
+import { ProductName, ProductNameSchema } from "./schemas/product-name.schema";
 
 @Module({
     imports: [
