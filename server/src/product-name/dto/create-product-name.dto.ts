@@ -1,4 +1,6 @@
+import { ObjectId } from "mongoose";
+
 export class CreateProductNameDto {
     readonly name: string;
-    readonly productTypeId: string;
+    readonly productTypeId: ObjectId;
 }

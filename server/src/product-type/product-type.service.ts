@@ -15,7 +15,7 @@ export class ProductTypeService {
     }
 
     async getAll(): Promise<ProductType[]> {
-        const productTypes = await this.productTypeModel.find().populate('productNames');
+        const productTypes = await this.productTypeModel.find();
         return productTypes;
     }
     

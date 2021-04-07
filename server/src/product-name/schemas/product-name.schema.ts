@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
+import { ProductType } from 'src/product-type/schemas/product-type.schema';
 
 export type ProductNameDocument = ProductName & Document;
 
@@ -10,7 +11,7 @@ export class ProductName {
     name: string;
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductType' })
-    productType: mongoose.ObjectId;
+    productType: ProductType;
 }
 
 export const ProductNameSchema = SchemaFactory.createForClass(ProductName);
