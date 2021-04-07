@@ -10,7 +10,10 @@ export class ProductNameService {
     constructor(@InjectModel(ProductName.name) private productNameModel: Model<ProductNameDocument>) { }
 
     async create(dto: CreateProductNameDto): Promise<ProductName> {
-        const productName = await this.productNameModel.create({...dto,productType: dto.productTypeId});
+        const productName = await this.productNameModel.create({ 
+            ...dto, 
+            productType: dto.productTypeId 
+        });
         return productName;
     }
 
