@@ -9,13 +9,11 @@ export class ColumnTypeService {
     constructor(@InjectModel(ColumnType.name) private columnTypeModel: Model<ColumnTypeDocument>) { }
 
     async create(dto: CreateColumnTypeDto): Promise<ColumnType> {
-        const columnType = await this.columnTypeModel.create({ ...dto });
-        return columnType;
+        return await this.columnTypeModel.create({ ...dto });
     }
 
     async getAll(): Promise<ColumnType[]> {
-        const columnTypes = await this.columnTypeModel.find().populate('productNames');
-        return columnTypes;
+        return await this.columnTypeModel.find().populate('productNames');
     }
     
     async delete(id: ObjectId): Promise<ObjectId> {

@@ -11,28 +11,24 @@ export class LocationService {
     constructor(@InjectModel(Location.name) private locationModel: Model<LocationDocument>) { }
 
     async create(dto: CreateLocationDto): Promise<Location> {
-        const currentLocation = await this.locationModel.findOne();
+        const location = await this.locationModel.findOne();
 
-        if (currentLocation == null) {
-            const location = await this.locationModel.create({ ...dto });
-            return location;
-        } else {
-            const location = await this.locationModel.findByIdAndUpdate(currentLocation.id, {
-                lat: dto.lat,
-                lng: dto.lng
-            });
-            return location;
-        }
+        if (location == null) {
+            return await this.locationModel.create({ ...dto });
+        } 
+
+        return await this.locationModel.findByIdAndUpdate(location.id, {
+            lat: dto.lat,
+            lng: dto.lng
+        });
     }
 
     async update(dto: UpdateLocationDto): Promise<Location> {
-        const location = await this.locationModel.findByIdAndUpdate(dto.id, dto);
-        return location;
+        return await this.locationModel.findByIdAndUpdate(dto.id, dto);
     }
 
     async getOne(): Promise<Location> {
-        const location = await this.locationModel.findOne();
-        return location;
+        return await this.locationModel.findOne();
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {

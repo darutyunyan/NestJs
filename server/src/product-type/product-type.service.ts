@@ -10,13 +10,11 @@ export class ProductTypeService {
     constructor(@InjectModel(ProductType.name) private productTypeModel: Model<ProductTypeDocument>) { }
 
     async create(dto: CreateProductTypeDto): Promise<ProductType> {
-        const productType = await this.productTypeModel.create({ ...dto });
-        return productType;
+        return await this.productTypeModel.create({ ...dto });
     }
 
     async getAll(): Promise<ProductType[]> {
-        const productTypes = await this.productTypeModel.find();
-        return productTypes;
+        return await this.productTypeModel.find();
     }
     
     async delete(id: ObjectId): Promise<ObjectId> {

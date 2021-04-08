@@ -9,7 +9,7 @@ import { ConfigService } from '@nestjs/config';
 export class ContactUsService {
 
     constructor(
-        private mailerService: MailerService, 
+        private mailerService: MailerService,
         private configService: ConfigService) { }
 
     async sendEmail(dto: SendEmailDto): Promise<SentMessageInfo> {
@@ -28,14 +28,14 @@ export class ContactUsService {
 
     async sendShortEmail(dto: SendShortEmailDto) {
         return await this.mailerService
-        .sendMail({
-            to: this.configService.get('MAIL_TO'),
-            from: this.configService.get('MAIL_FROM'),
-            subject: this.configService.get('MAIL_SHORT_SUBJECT'),
-            html: `
+            .sendMail({
+                to: this.configService.get('MAIL_TO'),
+                from: this.configService.get('MAIL_FROM'),
+                subject: this.configService.get('MAIL_SHORT_SUBJECT'),
+                html: `
             <p>Имя: ${dto.name}
             <br>Телефон: ${dto.phone}
             <br>Дополнительная информация: ${dto.message}</p>`,
-        });
+            });
     }
 }

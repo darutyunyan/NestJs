@@ -15,33 +15,30 @@ export class ProductService {
         @InjectModel(ColumnType.name) private columnTypeModel: Model<ColumnTypeDocument>) { }
 
     async create(dto: CreateProductDto): Promise<Product> {
-        const product = await this.produtModel.create({
+        return await this.produtModel.create({
             ...dto,
             productName: dto.productNameId,
             columnType: dto.columnTypeId
         });
-        return product;
     }
 
     async update(dto: UpdateProductDto, id: ObjectId): Promise<Product> {
         const productName = await this.produtNameModel.findById(dto.productNameId);
         const columnType = await this.columnTypeModel.findById(dto.columnTypeId);
-        const product = await this.produtModel.findByIdAndUpdate(id, {
+        return await this.produtModel.findByIdAndUpdate(id, {
             info: dto.info,
             productName: productName,
             columnType: columnType
         });
-        return product;
     }
 
     async getAll(): Promise<Product[]> {
-        const products = await this.produtModel.find().populate({
-            path: 'productName', 
-            populate: { 
-                path: 'productType' 
+        return await this.produtModel.find().populate({
+            path: 'productName',
+            populate: {
+                path: 'productType'
             }
         }).populate('columnType');
-        return products;
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {
