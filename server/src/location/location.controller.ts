@@ -24,6 +24,7 @@ export class LocationController {
     get(): Promise<Location> {
         return this.locationService.getOne();
     }
+    
     @Delete(':id')
     delete(@Param('id') id: ObjectId) {
         return this.locationService.delete(id);

@@ -6,15 +6,27 @@ import { ProductTypeModule } from './product-type/product-type.module';
 import { ColumnTypeModule } from './column-type/column-type.module';
 import { ProductModule } from './product/product.module';
 import { LocationModule } from './location/location.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ContactModule } from './contact-us/contact-us.module';
 
 @Module({
     imports: [
-        MongooseModule.forRoot('mongodb+srv://admin:qweqwe@cluster0.4ktpp.mongodb.net/agro-complex?retryWrites=true&w=majority'),
+        ConfigModule.forRoot({
+            isGlobal: true
+        }),
+        MongooseModule.forRootAsync({
+            imports: [ConfigService],
+            useFactory: async (config: ConfigService) => ({
+                uri: config.get('CONNECTION_STRING')
+            }),
+            inject: [ConfigService]
+        }),
         ProductNameModule,
         ProductTypeModule,
         ColumnTypeModule,
         ProductModule,
-        LocationModule
+        LocationModule,
+        ContactModule
     ],
     controllers: [AppController]
 })
