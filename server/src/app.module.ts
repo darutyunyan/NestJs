@@ -5,6 +5,7 @@ import { ProductNameModule } from './product-name/product-name.module';
 import { ProductTypeModule } from './product-type/product-type.module';
 import { ColumnTypeModule } from './column-type/column-type.module';
 import { ProductModule } from './product/product.module';
+import { LocationModule } from './location/location.module';
 
 @Module({
     imports: [
@@ -12,7 +13,8 @@ import { ProductModule } from './product/product.module';
         ProductNameModule,
         ProductTypeModule,
         ColumnTypeModule,
-        ProductModule
+        ProductModule,
+        LocationModule
     ],
     controllers: [AppController]
 })
