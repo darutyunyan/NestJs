@@ -41,6 +41,15 @@ export class ProductService {
         }).populate('columnType');
     }
 
+    async getById(id: ObjectId): Promise<Product> {
+        return await this.produtModel.findById(id).populate({
+            path: 'productName',
+            populate: {
+                path: 'productType'
+            }
+        }).populate('columnType');
+    }
+
     async delete(id: ObjectId): Promise<ObjectId> {
         const product = await this.produtModel.findByIdAndDelete(id);
         return product._id;

@@ -24,6 +24,11 @@ export class ProductController {
         return this.productService.getAll();
     }
 
+    @Get(':id')
+    getById(@Param('id') id: ObjectId): Promise<Product> {
+        return this.productService.getById(id);
+    }
+
     @Delete(':id')
     delete(@Param('id') id: ObjectId): Promise<ObjectId> {
         return this.productService.delete(id);
