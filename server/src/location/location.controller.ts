@@ -7,7 +7,6 @@ import { Location } from './schemas/location.schema';
 
 @Controller('/Location')
 export class LocationController {
-
     constructor(private locationService: LocationService) { }
 
     @Post()

@@ -8,6 +8,7 @@ import { ProductModule } from './product/product.module';
 import { LocationModule } from './location/location.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ContactModule } from './contact-us/contact-us.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -26,7 +27,8 @@ import { ContactModule } from './contact-us/contact-us.module';
         ColumnTypeModule,
         ProductModule,
         LocationModule,
-        ContactModule
+        ContactModule,
+        AuthModule
     ],
     controllers: [AppController]
 })

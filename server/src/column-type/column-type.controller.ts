@@ -5,7 +5,6 @@ import { CreateColumnTypeDto } from './dto/create-column-type.dto';
 
 @Controller('/columnType')
 export class ColumnTypeController {
-
     constructor(private columnTypeService: ColumnTypeService) { }
 
     @Post()

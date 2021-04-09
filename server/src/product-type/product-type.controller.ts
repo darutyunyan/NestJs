@@ -5,7 +5,6 @@ import { ProductTypeService } from './product-type.service';
 
 @Controller('/productType')
 export class ProductTypeController {
-
     constructor(private productTypeService: ProductTypeService) { }
 
     @Post()

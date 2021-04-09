@@ -6,7 +6,6 @@ import { ProductName } from './schemas/product-name.schema';
 
 @Controller('/productName')
 export class ProductNameController {
-
     constructor(private productNameService: ProductNameService) { }
 
     @Post()

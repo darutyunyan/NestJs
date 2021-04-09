@@ -5,7 +5,6 @@ import { SendShortEmailDto } from './dto/send-short-email.dto';
 
 @Controller('/contactUs')
 export class ContactUsController {
-
     constructor(private contactUsService: ContactUsService) { }
 
     @Post('/sendEmail')
