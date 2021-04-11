@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose';
 import { CreateProductTypeDto } from './dto/create-product-type.dto';
 import { ProductTypeService } from './product-type.service';
 
-@Controller('/productType')
+@Controller('productType')
 export class ProductTypeController {
     constructor(private productTypeService: ProductTypeService) { }
 

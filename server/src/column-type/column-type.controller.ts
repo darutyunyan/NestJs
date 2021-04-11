@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose';
 import { ColumnTypeService } from './column-type.service';
 import { CreateColumnTypeDto } from './dto/create-column-type.dto';
 
-@Controller('/columnType')
+@Controller('columnType')
 export class ColumnTypeController {
     constructor(private columnTypeService: ColumnTypeService) { }
 

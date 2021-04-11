@@ -4,7 +4,7 @@ import { CreateProductNameDto } from './dto/create-product-name.dto';
 import { ProductNameService } from './product-name.service';
 import { ProductName } from './schemas/product-name.schema';
 
-@Controller('/productName')
+@Controller('productName')
 export class ProductNameController {
     constructor(private productNameService: ProductNameService) { }
 

@@ -5,7 +5,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductService } from './product.service';
 import { Product } from './schemas/product.schema';
 
-@Controller('/product')
+@Controller('product')
 export class ProductController {
     constructor(private productService: ProductService) { }
 
