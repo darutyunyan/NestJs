@@ -1,0 +1,4 @@
+<div fxLayout="column">
+  <h1 fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">{{(products$ | async).length > 0 ? 'Список продуктов' : 'Нет продуктов' }}</h1>
+  <app-table-product *ngIf="loaded$ | async" [products]="products$ | async"></app-table-product>
+</div>

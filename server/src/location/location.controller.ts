@@ -1,7 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ObjectId } from 'mongoose';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateLocationDto } from './dto/create-location.dto';
-import { UpdateLocationDto } from './dto/update-location.dto';
 import { LocationService } from './location.service';
 import { Location } from './schemas/location.schema';
 
@@ -14,18 +12,9 @@ export class LocationController {
         return this.locationService.create(dto);
     }
 
-    @Put()
-    update(@Body() dto: UpdateLocationDto): Promise<Location> {
-        return this.locationService.update(dto);
-    }
-
     @Get()
     get(): Promise<Location> {
         return this.locationService.getOne();
     }
-    
-    @Delete(':id')
-    delete(@Param('id') id: ObjectId) {
-        return this.locationService.delete(id);
-    }
+
 }

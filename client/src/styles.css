@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa; }
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Start of common styles */
+
+.main-container {
+    margin: 60px auto;
+    min-height: 600px;
+}
+
+h1.mat-display-2{
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.form-text {
+    margin-top: 0;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-40 {
+    padding: 40px;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.router-link-active {
+    background-color: rgb(211, 203, 203) !important;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+  
+/* End of common styles */
+
+/* Start of material styles */
+
+mat-hint {
+    font-size: 12px;
+}
+
+
+@media (max-width: 670px) {
+    mat-form-field.hint-padding {
+        padding-bottom: 40px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    mat-form-field.hint-padding {
+        padding-bottom: 65px;
+    }
+}
+
+
+/* End of material styles */
+
+/* Start of admin styles */
+
+.product-list {
+    background-color: white;
+    max-height: 250px !important;
+    overflow: auto;
+}
+
+.product-list > div {
+    padding: 0 20px;
+    margin-bottom: 0 !important;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.product-list > h2 {
+    margin: 0;
+    padding: 10px;  
+}
+
+/* End of admin styles */
+
+
+/* Start of table styles */
+
+table {
+    width: 100%;
+  }
+
+  .mat-cell, .mat-header-cell {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  th.mat-header-cell {
+      text-align: left;
+  } 
+
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+      padding-left: 24px;
+  }
+
+  tr th {
+      border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  
+/* End of table styles */

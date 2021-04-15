@@ -1,0 +1,71 @@
+<mat-sidenav-container class="base-container" (backdropClick)="sidenav.close()">
+    <mat-sidenav #sidenav (keydown.escape)="sidenav.close()" disableClose>
+        <div fxLayoutAlign="end">
+            <span (click)="sidenav.close()" class="material-icons close-btn">
+                close
+            </span>
+        </div>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['/home']" (click)="sidenav.close()" routerLinkActive="router-link-active">
+                ГЛАВНАЯ
+            </a>
+            <a mat-list-item [routerLink]="['/products', 'first']" (click)="sidenav.close()" routerLinkActive="router-link-active">ПРОДУКЦИЯ</a>
+            <a mat-list-item [routerLink]="['/about']" (click)="sidenav.close()" routerLinkActive="router-link-active">О КОМПАНИИ</a>
+            <a mat-list-item [routerLink]="['/contactUs']" (click)="sidenav.close()" routerLinkActive="router-link-active">КОНТАКТЫ</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div>
+            <mat-toolbar>
+                <div fxFlexFill fxLayout="row" fxLayoutAlign="space-around center">
+                    <span fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around center">
+                        <mat-icon>phone</mat-icon>
+                        <small fxHide.lt-md="true">8 800 555 79 88</small>
+                    </span>
+                    <span class="separate">|</span>
+                    <span fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around center">
+                        <mat-icon>location_on</mat-icon>
+                        <small fxHide.lt-md="true">2903 Avenue Z, Brooklyn, NY, USA</small>
+                    </span>
+                    <span class="separate">|</span>
+                    <span fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around center">
+                        <mat-icon>mail_outline</mat-icon>
+                        <small fxHide.lt-md="true">darutyunyan95@mail.ru</small>
+                    </span>
+                    <span class="separate">|</span>
+                    <a href="https://instagram.com/autovikuprus.ru?igshid=1ijtabxir4uxs" class="fa fa-instagram social"
+                        target="_blank"></a>
+                    <span fxHide.gt-sm="true" class="separate">|</span>
+                    <a href="https://wa.me/79383000735" class="fa fa-whatsapp social" target="_blank"></a>
+                    <span fxHide.gt-sm="true" class="separate">|</span>
+                    <a href="tg://resolve?domain=autovikuprus" class="fa fa-telegram social" target="_blank"></a>
+                </div>
+            </mat-toolbar>
+
+            <mat-toolbar fxLayout="row" fxLayoutAlign="space-around center" fxLayoutAlign.lt-md="space-between center">
+                <span fxHide.gt-sm="true" (click)="sidenav.open()" class="material-icons">
+                    menu
+                </span>
+                <span class="logo" (click)="toHome()">AGRO COMPLEX</span>
+                <div fxHide.lt-md="true">
+                    <a mat-icon-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+                        <mat-icon>home</mat-icon>
+                    </a>
+                    <a *ngIf="(firstProductId$ | async) != null" mat-button [routerLink]="['/products', firstProductId$ | async]"
+                        routerLinkActive="router-link-active">ПРОДУКЦИЯ</a>
+                    <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">О КОМПАНИИ </a>
+                    <a mat-button [routerLink]="['/contactUs']" routerLinkActive="router-link-active">КОНТАКТЫ</a>
+                </div>
+                <button fxHide.lt-sm="true" mat-flat-button color="primary" (click)="openOnlineRequest()">ОНЛАЙН
+                    ЗАЯВКА</button>
+                <span fxHide.gt-xs="true" class="material-icons" (click)="openOnlineRequest()">send</span>
+            </mat-toolbar>
+        </div>
+
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="submit()" fxFlexFill fxLayout="row"
+    fxLayoutAlign="center center" #formDirective="ngForm">
+    <mat-card fxLayout="column" fxFlex.lt-sm="100">
+        <mat-card-header fxLayoutAlign="center">
+            <mat-card-title>Admin panel</mat-card-title>
+        </mat-card-header>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Login</mat-label>
+            <input type="text" matInput placeholder="Login" formControlName="email" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password" formControlName="password" autocomplete="off">
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Log in</button>
+    </mat-card>
+</form>

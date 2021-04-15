@@ -29,7 +29,7 @@ export class ProductService {
             info: dto.info,
             productName: productName,
             columnType: columnType
-        });
+        },{new: true, useFindAndModify: false});
     }
 
     async getAll(): Promise<Product[]> {

@@ -1,0 +1,19 @@
+.material-icons {
+    font-size: 50px;
+}
+
+.error {
+    color: #d9534f;
+}
+
+.warning     {
+    color: #f0ad4e;
+}
+
+.info {
+    color: #5bc0de;
+}
+
+.done {
+    color: #5cb85c;
+}

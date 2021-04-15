@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>ОНЛАЙН ЗАЯВКА</h2>
+<div mat-dialog-content class="mat-typography">
+    <form fxLayout="column" [formGroup]="form" (ngSubmit)="submit()" #formDirective="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Ваше имя</mat-label>
+            <input formControlName="name" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ваш телефон</mat-label>
+            <input formControlName="phone" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ваша почта</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Список позиций или вопрос/комментарий:</mat-label>
+            <textarea rows="5" matInput formControlName="productPosition"></textarea>
+        </mat-form-field>
+
+        <button mat-button mat-dialog-close>Отмена</button>
+        <button type="submit" mat-raised-button color="primary">ОТПРАВИТЬ <i *ngIf="sending$ | async"
+                class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></button>
+    </form>
+</div>

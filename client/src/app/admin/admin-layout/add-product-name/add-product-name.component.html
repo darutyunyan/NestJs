@@ -1,0 +1,34 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign=" stretch">
+    <h1 fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Добавление название нового продукта</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column" #formDirective="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Название</mat-label>
+            <input matInput placeholder="Пример: Однолетние травы" formControlName="name" autocomplete="off">
+            <mat-hint>Введите имя продукта</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="typeLoaded$ | async" appearance="outline">
+            <mat-label>Выберите вид продукта</mat-label>
+            <mat-select formControlName="productType">
+                <mat-option *ngFor="let type of types$ | async" [value]="type._id">
+                    {{type.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Добавить</button>
+    </form>
+    <mat-form-field *ngIf="(items$ | async).length > 0">
+        <mat-label>Фильтр</mat-label>
+        <input matInput [(ngModel)]="searchItem" placeholder="Пример: Семена" autocomplete="off">
+    </mat-form-field>
+    <div *ngIf="loaded$ | async" class="product-list mat-elevation-z8" fxFlexFill>
+        <h2>{{(items$ | async).length > 0 ? 'Названия продуктов' : 'Нет данных' }} </h2>
+        <div fxLayout="row" fxLayoutAlign="space-between center"
+            *ngFor="let item of items$ | async | search : searchItem">
+            <span class="w-33">{{item.name}}</span>
+            <span class="w-33">{{item.productType.name}}</span>
+            <button type="button" (click)="remove(item._id)" mat-icon-button color="warn">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

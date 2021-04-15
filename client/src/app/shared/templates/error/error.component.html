@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Agro Complex </h1>
+<div mat-dialog-content fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <p>
+        <span class="material-icons" [class]="getErrorTypeString()">
+            {{getErrorTypeString()}}
+        </span>
+    </p>
+    <p>{{message}}</p>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end stretch">
+    <button mat-raised-button (click)="onNoClick()">Close</button>
+</div>

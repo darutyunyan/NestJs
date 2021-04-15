@@ -1,0 +1,15 @@
+<footer>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+        <app-socials-info class="p-40"></app-socials-info>
+        <app-short-feedback class="p-40"></app-short-feedback>
+        <app-location class="p-40" *ngIf="(error$ | async) == null && (mapLoading$ | async) === false"></app-location>
+    </div>
+
+    <div>
+        <hr class="line">
+    </div>
+
+    <div class="text-muted p-10" fxLayoutAlign="center">
+        <small>&copy; AgroComplex, 2020 - {{getFullYear()}} | Все права защищены</small>
+    </div>
+</footer>

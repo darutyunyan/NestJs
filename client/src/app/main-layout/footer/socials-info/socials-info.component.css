@@ -1,0 +1,38 @@
+
+.logo {
+    font-weight: bold;
+    font-family: cursive;
+    letter-spacing: 2px;
+    font-size: 30px;
+    margin-bottom: 30px !important;
+}
+
+mat-icon {
+    color:#1976d2;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white !important;
+}
+
+  .social a{
+      font-size: 35px;
+  }
+
+  .social a:hover {
+      text-decoration: none;
+      color: #0056b3;
+  }
+
+  mat-icon {
+      cursor: pointer;
+  }
+
+  mat-icon:hover {
+    color: #0056b3;
+}
+
+.fa {
+    text-decoration: none;
+    color: #1976d2;
+}

@@ -1,0 +1,75 @@
+
+.base-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+.material-icons {
+    cursor: pointer;
+}
+
+mat-sidenav{
+    width: 300px;
+}
+.close-btn {
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+mat-icon {
+    cursor: pointer;
+}
+
+/* Styles of first menu */
+
+mat-toolbar {
+    background: rgba(33,33,33,.93);
+}
+
+div mat-toolbar:first-child {
+    min-height: 0;
+    height: auto;
+    color: #fff;
+}
+
+.social {
+    color:white !important;
+    text-decoration: none !important;
+}
+
+.separate {
+    color:#cecece;
+}
+
+small {
+    font-size: 65%;
+}
+
+/* Styles of second menu */
+
+div mat-toolbar:last-child {
+    background-color: white;
+    box-shadow: 
+    0 3px 1px -2px rgba(0,0,0,.2), 
+    0 2px 2px 0 rgba(0,0,0,.14), 
+    0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.logo {
+    color: rgba(0,0,0,.87);
+    font-weight: bold;
+    font-family: cursive;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    color: rgba(0,0,0,.87);
+}
+
+.cdk-focused.cdk-mouse-focused {
+    background-color: rgba(0,0,0,.1);
+}

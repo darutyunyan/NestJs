@@ -1,0 +1,15 @@
+<h1>{{product.productName}}</h1>
+<table class="mat-table cdk-table mat-elevation-z8">
+    <thead>
+        <tr class="mat-header-row">
+            <th class="mat-header-cell" *ngFor="let columnName of product.columnNames" class="mat-header-cell">
+                {{columnName}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="mat-row" *ngFor="let info of product.info">
+            <td class="mat-cell" *ngFor="let item of info">{{item}}</td>
+        </tr>
+    </tbody>
+</table>

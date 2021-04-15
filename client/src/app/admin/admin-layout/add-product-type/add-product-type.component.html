@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign=" stretch">
+    <h1 fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Добавление нового вида продукции</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column" #formDirective="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Название</mat-label>
+            <input matInput placeholder="Пример: Семена" formControlName="name" autocomplete="off">
+            <mat-hint>Введите новый вид продукта</mat-hint>
+        </mat-form-field>
+        <br>
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Добавить</button>
+    </form>
+    <div *ngIf="loaded$ | async" class="product-list mat-elevation-z8" fxFlexFill> 
+        <h2>{{(items$ | async).length > 0 ? 'Виды продуктов' : 'Нет данных' }} </h2>
+        <div fxLayout="row" fxLayoutAlign="space-between center"
+            *ngFor="let item of items$ | async">
+            <div>
+                {{item.name}}
+            </div>
+            <button type="button" (click)="remove(item._id)" mat-icon-button color="warn">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

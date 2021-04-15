@@ -1,0 +1,12 @@
+.logo {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+  mat-sidenav-container {
+    height: calc(100% - 65px);
+  }
+
+  .admin-container {
+    margin: 0.5rem;
+  }

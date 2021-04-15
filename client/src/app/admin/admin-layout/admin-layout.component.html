@@ -1,0 +1,44 @@
+<mat-toolbar *ngIf="isAuthenicated()" color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="logo" (click)="goHome()">AgroComplex</span>
+        <span class="menu-spacer"></span>
+        <div fxShow="true" fxHide.lt-md>
+            <a mat-button [routerLink]="['/admin','dashboard']"> Продукты </a>
+            <a mat-button [routerLink]="['/admin','add-product']"> Доб. продукт </a>
+            <a mat-button [routerLink]="['/admin','add-product-name']"> Доб. имя продукта </a>
+            <a mat-button [routerLink]="['/admin','add-column-type']"> Доб. тип таблицы </a>
+            <a mat-button [routerLink]="['/admin','add-product-type']"> Доб. вид продукции </a>
+        </div>
+        <button mat-icon-button (click)="goLocationSettings()">
+            <mat-icon>location_on</mat-icon>
+        </button>
+        <button mat-icon-button (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','dashboard']"> Продукты </a>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product']"> Добавить продукт
+            </a>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-name']"> Добавить имя
+                продукта </a>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-column-type']"> Добавить тип
+                таблицы </a>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-type']"> Добавить вид
+                продукции </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="admin-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<app-loader></app-loader>
