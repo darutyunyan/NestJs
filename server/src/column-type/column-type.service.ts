@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { CreateColumnTypeDto } from './dto/create-column-type.dto';
@@ -13,11 +13,16 @@ export class ColumnTypeService {
     }
 
     async getAll(): Promise<ColumnType[]> {
-        return await this.columnTypeModel.find().populate('productNames');
+        return await this.columnTypeModel.find();
     }
     
     async delete(id: ObjectId): Promise<ObjectId> {
-        const columnType = await this.columnTypeModel.findByIdAndDelete(id);
-        return columnType._id;
+        const currentColumnType = await this.columnTypeModel.findById(id);
+        if (currentColumnType.products.length) {
+            throw new InternalServerErrorException();
+        }
+
+        const deletedColumnType = await this.columnTypeModel.findByIdAndDelete(id);
+        return deletedColumnType._id;
     }
 }

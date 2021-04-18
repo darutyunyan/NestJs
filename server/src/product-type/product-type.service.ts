@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, ObjectId } from "mongoose";
 import { CreateProductTypeDto } from "./dto/create-product-type.dto";
@@ -16,9 +16,14 @@ export class ProductTypeService {
     async getAll(): Promise<ProductType[]> {
         return await this.productTypeModel.find();
     }
-    
+
     async delete(id: ObjectId): Promise<ObjectId> {
-        const productType = await this.productTypeModel.findByIdAndDelete(id);
-        return productType._id;
+        const currentProductType = await this.productTypeModel.findById(id);
+        if (currentProductType.productNames.length) {
+            throw new InternalServerErrorException();
+        }
+
+        const deletedProductType = await this.productTypeModel.findByIdAndDelete(currentProductType.id);
+        return deletedProductType._id;
     }
 }

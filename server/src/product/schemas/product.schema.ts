@@ -8,7 +8,9 @@ export type ProductDocument = Product & Document;
 
 @Schema()
 export class Product {
-    @Prop()
+    @Prop({
+        unique: true
+    })
     info: string;
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductName' })
