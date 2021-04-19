@@ -45,7 +45,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         this.router.navigate(['/admin', 'login']);
                     }
                     this.store.dispatch(hideLoader());
-                    return throwError(error);
+                    return throwError(error.error);
                 })
             );
     }

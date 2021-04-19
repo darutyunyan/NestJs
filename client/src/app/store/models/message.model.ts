@@ -1,12 +1,10 @@
 export enum ErrorType {
     Success = 1,
-    Error,
-    Warning,
-    Info,
+    Error
 }
 
 export interface IMessageData {
-    statusCode: string;
+    statusCode: number;
     message?: string;
 }
 

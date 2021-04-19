@@ -3,6 +3,6 @@ export interface IResponseError {
 }
 
 export interface IError {
-    statusCode: string;
+    statusCode: number;
     message: string;
 }

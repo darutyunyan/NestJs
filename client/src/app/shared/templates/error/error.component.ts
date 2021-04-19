@@ -11,9 +11,7 @@ import { ErrorType, IMessageData } from 'src/app/store/models/message.model';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
-  public static readonly ERROR_COMMON: string = 'ABBCC1121';
-  public static readonly ERROR_BUSINESS: string = 'ABBC1122';
-  public static readonly SUCCESS_OPERATION: string = 'ABBC1123';
+  public static readonly SUCCESS_OPERATION: number = 200;
 
   public message: string = null;
   public errorType: ErrorType = null;
@@ -38,23 +36,15 @@ export class ErrorComponent implements OnInit {
   }
 
   public getErrorTypeString(): string {
-    if (this.errorType === ErrorType.Warning) {
-      return 'warning';
-    } else if (this.errorType === ErrorType.Error) {
-      return 'error';
-    } else if (this.errorType === ErrorType.Success) {
+    if (this.errorType === ErrorType.Success) {
       return 'done';
     }
+
+    return 'error';
   }
 
-  private getErrorType(statusCode: string): ErrorType {
+  private getErrorType(statusCode: number): ErrorType {
     switch (statusCode) {
-      case ErrorComponent.ERROR_BUSINESS:
-        return ErrorType.Warning;
-
-      case ErrorComponent.ERROR_COMMON:
-        return ErrorType.Error;
-
       case ErrorComponent.SUCCESS_OPERATION:
         return ErrorType.Success;
 

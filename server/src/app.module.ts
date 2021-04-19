@@ -9,6 +9,8 @@ import { LocationModule } from './location/location.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ContactModule } from './contact-us/contact-us.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from './shared/http-exceptions.filter';
 
 @Module({
     imports: [
@@ -31,6 +33,12 @@ import { AuthModule } from './auth/auth.module';
         ContactModule,
         AuthModule
     ],
+    providers: [
+        {
+          provide: APP_FILTER,
+          useClass: HttpExceptionFilter,
+        },
+      ],
     controllers: [AppController]
 })
 export class AppModule { }

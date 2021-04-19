@@ -1,13 +1,17 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, ObjectId } from "mongoose";
+import { BusinessException } from "src/shared/business.exception";
 import { CreateProductTypeDto } from "./dto/create-product-type.dto";
 import { ProductType, ProductTypeDocument } from "./schemas/product-type.schema";
 
 @Injectable()
 export class ProductTypeService {
 
-    constructor(@InjectModel(ProductType.name) private productTypeModel: Model<ProductTypeDocument>) { }
+    constructor(
+        @InjectModel(ProductType.name) private productTypeModel: Model<ProductTypeDocument>,
+        private configService: ConfigService) { }
 
     async create(dto: CreateProductTypeDto): Promise<ProductType> {
         return await this.productTypeModel.create({ ...dto });
@@ -18,12 +22,12 @@ export class ProductTypeService {
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {
-        const currentProductType = await this.productTypeModel.findById(id);
-        if (currentProductType.productNames.length) {
-            throw new InternalServerErrorException();
+        const productNames = await (await this.productTypeModel.findById(id)).productNames;
+        if (productNames.length) {
+            throw new BusinessException(this.configService.get('PRODUCT_TYPE_DELETE_MESSAGE'));
         }
 
-        const deletedProductType = await this.productTypeModel.findByIdAndDelete(currentProductType.id);
+        const deletedProductType = await this.productTypeModel.findByIdAndDelete(id);
         return deletedProductType._id;
     }
 }
