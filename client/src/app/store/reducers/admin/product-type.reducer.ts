@@ -2,34 +2,36 @@ import { Action, createReducer, on } from '@ngrx/store';
 import {
     addProductTypeError, addProductTypePending, addProductTypeSuccess,
     clearProductTypeError,
-    getProductTypesError, getProductTypesSuccess,
+    getProductTypesError, getProductTypesPending, getProductTypesSuccess,
     removeProductTypeError, removeProductTypePending, removeProductTypeSuccess
 } from '../../actions/admin/product-type.action';
 import { IProductTypeState } from '../../models/product-type/product-type.model';
 
 const initialState: IProductTypeState = {
-    items: [],
+    items: null,
     error: null,
-    loaded: false,
     successOperation: false,
 };
 
 const productTypesReducer = createReducer(
     initialState,
+    on(getProductTypesPending, (state) => {
+        return {
+            ...state,
+            successOperation: false
+        };
+    }),
     on(getProductTypesSuccess, (state, action) => {
         return {
             ...state,
-            items: action.items,
-            loaded: true,
-            successOperation: false
+            items: action.items
         };
     }),
     on(getProductTypesError, (state, action) => {
         return {
             ...state,
-            items: [],
-            error: action.error,
-            loaded: false
+            items: null,
+            error: action.error
         };
     }),
     on(addProductTypePending, (state) => {

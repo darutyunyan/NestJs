@@ -7,28 +7,30 @@ import {
 import { IProductNameState } from '../../models/produt-name/product-name.module';
 
 const initialState: IProductNameState = {
-    items: [],
+    items: null,
     error: null,
-    loaded: false,
     successOperation: false,
 };
 
 const productNamesReducer = createReducer(
     initialState,
+    on(getProductNamesPending, (state) => {
+        return {
+            ...state,
+            successOperation: false
+        };
+    }),
     on(getProductNamesSuccess, (state, action) => {
         return {
             ...state,
-            items: action.items,
-            loaded: true,
-            successOperation: false
+            items: action.items
         };
     }),
     on(getProductNamesError, (state, action) => {
         return {
             ...state,
-            items: [],
-            error: action.error,
-            loaded: false
+            items: null,
+            error: action.error
         };
     }),
     on(addProductNamePending, (state) => {

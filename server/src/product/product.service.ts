@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { ColumnType, ColumnTypeDocument } from 'src/column-type/schemas/column-type.schema';
 import { ProductName, ProductNameDocument } from 'src/product-name/schemas/product-name.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -11,46 +10,48 @@ import { Product, ProductDocument } from './schemas/product.schema';
 export class ProductService {
     constructor(
         @InjectModel(Product.name) private produtModel: Model<ProductDocument>,
-        @InjectModel(ProductName.name) private produtNameModel: Model<ProductNameDocument>,
-        @InjectModel(ColumnType.name) private columnTypeModel: Model<ColumnTypeDocument>) { }
+        @InjectModel(ProductName.name) private produtNameModel: Model<ProductNameDocument>) { }
 
     async create(dto: CreateProductDto): Promise<Product> {
         const productName = await this.produtNameModel.findById(dto.productNameId);
-        const columnType = await this.columnTypeModel.findById(dto.columnTypeId);
-        if (!productName || !columnType) {
+        if (!productName) {
             throw new InternalServerErrorException();
         }
 
         // Creates a product.
         const product = await this.produtModel.create({
             ...dto,
-            productName: dto.productNameId,
-            columnType: dto.columnTypeId
+            productName: dto.productNameId
         });
 
-        // Adds the product ID to the product name document.
-        productName.products.push(product.id);
-        productName.save();
-
-        // Adds the product ID to the column type doceumnt.
-        columnType.products.push(product.id);
-        columnType.save();
+        // Adds the product ID to the ProductName document.
+        await this._addIdToDocument(product.id, productName);
 
         return product;
     }
 
     async update(dto: UpdateProductDto, id: ObjectId): Promise<Product> {
-        const productName = await this.produtNameModel.findById(dto.productNameId);
-        const columnType = await this.columnTypeModel.findById(dto.columnTypeId);
-        if (!productName || !columnType) {
+        const newProductName = await this.produtNameModel.findById(dto.productNameId);
+        if (!newProductName) {
             throw new InternalServerErrorException();
         }
 
-        return await this.produtModel.findByIdAndUpdate(id, {
+        // Removes product ID from product name and column type documents.
+        const product = await this.produtModel.findById(id);
+        const oldProductName = await this.produtNameModel.findById(product.productName);
+        const productNameIndex = oldProductName.products.indexOf(product.id);
+        await this._deleteIdFromDocumentByIndex(oldProductName, productNameIndex);
+
+        // Updates a product.
+        const updatedProduct = await this.produtModel.findByIdAndUpdate(id, {
             info: dto.info,
-            productName: productName,
-            columnType: columnType
+            productName: newProductName
         }, { new: true, useFindAndModify: false });
+
+        // Adds the product ID to the ProductName document.
+        await this._addIdToDocument(updatedProduct.id, newProductName);
+
+        return updatedProduct;
     }
 
     async getAll(): Promise<Product[]> {
@@ -59,7 +60,12 @@ export class ProductService {
             populate: {
                 path: 'productType'
             }
-        }).populate('columnType');
+        }).populate({
+            path: 'productName',
+            populate: {
+                path: 'columnType'
+            }
+        });
     }
 
     async getById(id: ObjectId): Promise<Product> {
@@ -67,8 +73,8 @@ export class ProductService {
             path: 'productName',
             populate: {
                 path: 'productType'
-            }
-        }).populate('columnType');
+            },
+        });
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {
@@ -78,19 +84,20 @@ export class ProductService {
         // Removes the product ID fron product name document.
         const productName = await this.produtNameModel.findById(deletedProduct.productName);
         const productNameIndex = productName.products.indexOf(deletedProduct.id);
-        if (productNameIndex !== -1) {
-            productName.products.splice(productNameIndex, 1);
-            productName.save();
-        }
-
-        // Removes the product ID fron column type document.
-        const columnType = await this.columnTypeModel.findById(deletedProduct.columnType);
-        const columnTypeIndex = columnType.products.indexOf(deletedProduct.id);
-        if (columnTypeIndex !== -1) {
-            columnType.products.splice(columnTypeIndex, 1);
-            columnType.save();
-        }
+        await this._deleteIdFromDocumentByIndex(productName, productNameIndex);
 
         return deletedProduct._id;
+    }
+
+    private async _deleteIdFromDocumentByIndex(document: ProductNameDocument, idIndex: number): Promise<void> {
+        if (idIndex !== -1) {
+            document.products.splice(idIndex, 1);
+            document.save();
+        }
+    }
+
+    private async _addIdToDocument(id: Product, document: ProductNameDocument): Promise<void> {
+        document.products.push(id);
+        document.save();
     }
 }

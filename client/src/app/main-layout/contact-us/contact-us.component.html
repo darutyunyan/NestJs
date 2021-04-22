@@ -21,8 +21,8 @@
                 <a href="tg://resolve?domain=autovikuprus" class="fa fa-telegram" target="_blank"></a>
             </div>
         </div>
-        <p *ngIf="(error$ | async) == null && (mapLoading$ | async) === false" fxFlexAlign="center" class="mat-display-1">СХЕМА ПРОЕЗДА</p>
-        <app-map *ngIf="(error$ | async) == null && (mapLoading$ | async) === false" [zoom]="12" [mapSize]="'large'" [options]="null" [state]="null"></app-map>
+        <p *ngIf="(error$ | async) == null && (loading$ | async) === false" fxFlexAlign="center" class="mat-display-1">СХЕМА ПРОЕЗДА</p>
+        <app-map *ngIf="(error$ | async) == null && (loading$ | async) === false" [zoom]="12" [mapSize]="'large'" [options]="null" [state]="null"></app-map>
     </mat-card>
     <app-terms></app-terms>
 </div>

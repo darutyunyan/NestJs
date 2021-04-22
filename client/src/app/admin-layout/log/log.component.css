@@ -1,0 +1,20 @@
+.date-createion {
+    width: 20%;
+}
+
+.path {
+    width: 20%;
+}
+
+.message {
+    width: 20%;
+}
+
+.stack-trace {
+    width: 40%;
+}
+
+.log-table {
+    max-height: 80vh;
+    overflow: auto;
+}

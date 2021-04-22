@@ -2,7 +2,6 @@ import { IError } from '../error';
 
 export interface IColumnTypeState {
     items: IColumnTypeItem[];
-    loaded: boolean;
     successOperation: boolean;
     error: IError;
 }

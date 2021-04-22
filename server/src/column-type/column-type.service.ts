@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { BusinessException } from 'src/shared/business.exception';
+import { BusinessException } from 'src/shared/exeptions/business.exception';
 import { CreateColumnTypeDto } from './dto/create-column-type.dto';
 import { ColumnType, ColumnTypeDocument } from './schemas/column-type.schema';
 
@@ -21,8 +21,8 @@ export class ColumnTypeService {
     }
     
     async delete(id: ObjectId): Promise<ObjectId> {
-        const products = await (await this.columnTypeModel.findById(id)).products;
-        if (products.length) {
+        const productNames = await (await this.columnTypeModel.findById(id)).productNames;
+        if (productNames.length) {
             throw new BusinessException(this.configService.get('COLUMN_TYPE_DELETE_MESSAGE'));
         }
 

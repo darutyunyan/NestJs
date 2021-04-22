@@ -10,7 +10,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ContactModule } from './contact-us/contact-us.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_FILTER } from '@nestjs/core';
-import { HttpExceptionFilter } from './shared/http-exceptions.filter';
+import { HttpExceptionFilter } from './shared/filters/http-exceptions.filter';
+import { LogModule } from './log/log.module';
 
 @Module({
     imports: [
@@ -31,7 +32,8 @@ import { HttpExceptionFilter } from './shared/http-exceptions.filter';
         ProductModule,
         LocationModule,
         ContactModule,
-        AuthModule
+        AuthModule,
+        LogModule
     ],
     providers: [
         {

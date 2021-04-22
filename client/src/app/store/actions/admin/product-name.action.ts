@@ -34,7 +34,7 @@ export const getProductNamesError = createAction(
 
 export const addProductNamePending = createAction(
     ProductNameActions.AddProductNamePending,
-    props<{ name: string, productTypeId: string }>()
+    props<{ name: string, productTypeId: string, columnTypeId: string  }>()
 );
 
 export const addProductNameSuccess = createAction(

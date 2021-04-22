@@ -1,35 +1,37 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import {
     addProductError, addProductPending, addProductSuccess,
-    clearProductError, getProductsError, getProductsSuccess,
+    clearProductError, getProductsError, getProductsPending, getProductsSuccess,
     removeProductError, removeProductPending, removeProductSuccess,
     updateProductError, updateProductPending, updateProductSuccess
 } from '../../actions/admin/product.action';
 import { IProductState } from '../../models/product/product.module';
 
 const initialState: IProductState = {
-    items: [],
+    items: null,
     error: null,
-    loaded: false,
     successOperation: false,
 };
 
 const productReducer = createReducer(
     initialState,
+    on(getProductsPending, (state) => {
+        return {
+            ...state,
+            successOperation: false
+        };
+    }),
     on(getProductsSuccess, (state, action) => {
         return {
             ...state,
-            items: action.items,
-            loaded: true,
-            successOperation: false
+            items: action.items
         };
     }),
     on(getProductsError, (state, action) => {
         return {
             ...state,
             items: [],
-            error: action.error,
-            loaded: false
+            error: action.error
         };
     }),
     on(addProductPending, updateProductPending, (state) => {

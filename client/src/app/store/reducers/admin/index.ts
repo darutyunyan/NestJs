@@ -6,6 +6,7 @@ import { IProductNameState } from '../../models/produt-name/product-name.module'
 import { IMessageData } from '../../models/message.model';
 import { ILoader } from './loader.reducer';
 import { ILocationState } from '../../models/location.module';
+import { ILogState } from '../../models/log/log.model';
 
 import accountReducer from './account.reducer';
 import productReducer from './product.reducers';
@@ -15,8 +16,7 @@ import productNamesReducer from './product-name.reducer';
 import messageReducer from '../message.reducer';
 import locationReducer from '../shared/location.reducers';
 import loaderReducer from '../admin/loader.reducer';
-
-
+import logReducer from '../admin/log.reducer';
 
 export interface IAdminState {
     adminState: IState;
@@ -29,6 +29,7 @@ export interface IState {
     columnTypeState: IColumnTypeState;
     productNameState: IProductNameState;
     locationState: ILocationState;
+    logState: ILogState;
     messageData: IMessageData;
     loader: ILoader;
 }
@@ -40,6 +41,7 @@ export const adminReducers = {
     columnTypeState: columnTypesReducer,
     productNameState: productNamesReducer,
     locationState: locationReducer,
+    logState: logReducer,
     messageData: messageReducer,
     loader: loaderReducer
 };

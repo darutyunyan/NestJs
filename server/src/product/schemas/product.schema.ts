@@ -15,9 +15,6 @@ export class Product {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductName' })
     productName: ProductName;
-
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ColumnType' })
-    columnType: ColumnType;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

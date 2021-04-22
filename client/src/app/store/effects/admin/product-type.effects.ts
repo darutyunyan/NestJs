@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ProductService } from 'src/app/admin/shared/services/product.service';
+import { ProductService } from 'src/app/admin-layout/shared/services/product.service';
 import {
     addProductTypeError, addProductTypePending, addProductTypeSuccess,
     getProductTypesError, getProductTypesPending, getProductTypesSuccess,
@@ -13,7 +13,7 @@ import { IProductTypeItem } from '../../models/product-type/product-type.model';
 @Injectable()
 export class ProductTypeEffects {
     public getProductTypes$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
-        ofType(getProductTypesPending, addProductTypeSuccess, removeProductTypeSuccess),
+        ofType(getProductTypesPending),
         mergeMap(() => this.productService.getProductTypes()
             .pipe(
                 map((items: IProductTypeItem[]) => {

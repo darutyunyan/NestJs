@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ProductService } from 'src/app/admin/shared/services/product.service';
+import { ProductService } from 'src/app/admin-layout/shared/services/product.service';
 import {
     addProductNameError, addProductNamePending, addProductNameSuccess,
     getProductNamesError, getProductNamesPending, getProductNamesSuccess,
@@ -13,7 +13,7 @@ import { IProductNameItem } from '../../models/produt-name/product-name.module';
 @Injectable()
 export class ProductNameEffects {
     public getProductNames$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
-        ofType(getProductNamesPending, addProductNameSuccess, removeProductNameSuccess),
+        ofType(getProductNamesPending),
         mergeMap(() => this.productService.getProductNames()
             .pipe(
                 map((items: IProductNameItem[]) => {
@@ -28,7 +28,11 @@ export class ProductNameEffects {
 
     public addProductName$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
         ofType(addProductNamePending),
-        mergeMap((action) => this.productService.addProductName({ name: action.name, productTypeId: action.productTypeId })
+        mergeMap((action) => this.productService.addProductName({
+            name: action.name,
+            productTypeId: action.productTypeId,
+            columnTypeId: action.columnTypeId
+        })
             .pipe(
                 map(() => {
                     return addProductNameSuccess();

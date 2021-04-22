@@ -38,7 +38,7 @@ export const getProductsError = createAction(
 
 export const addProductPending = createAction(
     ProductActions.AddProductPending,
-    props<{ info: string, productNameId: string, columnTypeId: string }>()
+    props<{ info: string, productNameId: string }>()
 );
 
 export const addProductSuccess = createAction(
@@ -52,7 +52,7 @@ export const addProductError = createAction(
 
 export const updateProductPending = createAction(
     ProductActions.UpdateProductPending,
-    props<{ id: string, info: string, productNameId: string, columnTypeId: string }>()
+    props<{ id: string, info: string, productNameId: string }>()
 );
 
 export const updateProductSuccess = createAction(

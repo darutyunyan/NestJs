@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, ObjectId } from "mongoose";
-import { BusinessException } from "src/shared/business.exception";
+import { BusinessException } from "src/shared/exeptions/business.exception";
 import { CreateProductTypeDto } from "./dto/create-product-type.dto";
 import { ProductType, ProductTypeDocument } from "./schemas/product-type.schema";
 

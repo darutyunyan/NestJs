@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { ProductType } from 'src/product-type/schemas/product-type.schema';
 import { Product } from 'src/product/schemas/product.schema';
+import { ColumnType } from 'src/column-type/schemas/column-type.schema';
 
 export type ProductNameDocument = ProductName & Document;
 
@@ -15,6 +16,9 @@ export class ProductName {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductType' })
     productType: ProductType;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ColumnType' })
+    columnType: ColumnType;
 
     @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }])
     products: Product[];

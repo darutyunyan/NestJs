@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch">
+    <h1 class="admin-header" fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Logs</h1>
+    <div class="log-table" *ngIf="(items$ | async)">
+        <table class="mat-table cdk-table mat-elevation-z8">
+            <thead>
+                <tr class="mat-header-row">
+                    <th class="mat-header-cell" class="mat-header-cell">
+                        Дата
+                    </th>
+                    <th class="mat-header-cell" class="mat-header-cell">
+                        Путь
+                    </th>
+                    <th class="mat-header-cell" class="mat-header-cell">
+                        Сообщение
+                    </th>
+                    <th class="mat-header-cell" class="mat-header-cell">
+                        Полное сообщение
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="mat-row" *ngFor="let item of items$ | async">
+                    <td class="mat-cell date-creation">{{item.dateCreation | date:'medium'}}</td>
+                    <td class="mat-cell path">{{item.path}}</td>
+                    <td class="mat-cell message">{{item.message}}</td>
+                    <td class="mat-cell stack-trace">{{item.stackTrace}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

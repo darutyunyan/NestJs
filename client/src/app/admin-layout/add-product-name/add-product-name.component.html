@@ -1,0 +1,55 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign=" stretch"
+    *ngIf="(types$ | async)?.length > 0 && (columns$ | async)?.length > 0">
+    <h1 class="admin-header" fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Добавление название нового продукта</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column"
+        #formDirective="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Название</mat-label>
+            <input matInput placeholder="Пример: Однолетние травы" formControlName="name" autocomplete="off">
+            <mat-hint>Введите имя продукта</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Выберите вид продукта</mat-label>
+            <mat-select formControlName="productType">
+                <mat-option *ngFor="let type of types$ | async" [value]="type._id">
+                    {{type.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="pb-20">
+            <mat-label>Выберите вид таблицы</mat-label>
+            <mat-select formControlName="columnType">
+                <mat-option *ngFor="let column of columns$ | async;" [value]="column._id">
+                    {{column.name}}
+                </mat-option>
+            </mat-select>
+            <mat-hint>
+                Таблица должна соответствовать введенной информации о продукте.
+            </mat-hint>
+        </mat-form-field>
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Добавить</button>
+    </form>
+    <mat-form-field *ngIf="(items$ | async)?.length > 0">
+        <mat-label>Фильтр</mat-label>
+        <input matInput [(ngModel)]="searchItem" placeholder="Пример: Семена" autocomplete="off">
+    </mat-form-field>
+    <div class="product-list mat-elevation-z8" fxFlexFill>
+        <h2>{{(items$ | async)?.length > 0 ? 'Названия продуктов' : 'Нет данных' }} </h2>
+        <div fxLayout="row" fxLayoutAlign="space-between center"
+            *ngFor="let item of items$ | async | search : searchItem">
+            <span class="w-33">{{item.name}}</span>
+            <span class="w-33">{{item.productType.name}}</span>
+            <span class="w-33">{{item.columnType.name}}</span>
+            <button type="button" (click)="remove(item._id)" mat-icon-button color="warn">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign=" stretch">
+    <app-alert-info *ngIf="(types$ | async)?.length == 0" [message]="ALERT_MESSAGE" [link]="ALERT_LINK">
+    </app-alert-info>
+    <app-alert-info *ngIf=" (columns$ | async)?.length == 0" [message]="ALERT_MESSAGE_CM_TYPE"
+        [link]="ALERT_LINK_CM_TYPE"></app-alert-info>
+</div>

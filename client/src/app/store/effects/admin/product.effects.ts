@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ProductService } from 'src/app/admin/shared/services/product.service';
+import { ProductService } from 'src/app/admin-layout/shared/services/product.service';
 import {
     updateProductError, updateProductPending, updateProductSuccess, getProductsError,
     getProductsPending, getProductsSuccess, removeProductError, removeProductPending,
@@ -13,11 +13,10 @@ import {
 } from '../../actions/admin/product.action';
 import { IProductItem } from '../../models/product/product.module';
 
-
 @Injectable()
 export class ProductEffects {
     public getProducts$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
-        ofType(getProductsPending, removeProductSuccess, updateProductSuccess),
+        ofType(getProductsPending),
         mergeMap(() => this.productService.getAllProducts()
             .pipe(
                 map((items: IProductItem[]) => {
@@ -34,8 +33,7 @@ export class ProductEffects {
         ofType(addProductPending),
         mergeMap((action) => this.productService.addProduct({
             info: action.info,
-            productNameId: action.productNameId,
-            columnTypeId: action.columnTypeId
+            productNameId: action.productNameId
         })
             .pipe(
                 map(() => {
@@ -53,8 +51,7 @@ export class ProductEffects {
         mergeMap((action) => this.productService.updateProduct(action.id,
             {
                 info: action.info,
-                productNameId: action.productNameId,
-                columnTypeId: action.columnTypeId
+                productNameId: action.productNameId
             })
             .pipe(
                 map(() => {

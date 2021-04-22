@@ -9,4 +9,4 @@ import { ColumnType, ColumnTypeSchema } from './schemas/column-type.schema';
     controllers: [ColumnTypeController],
     providers: [ColumnTypeService]
 })
-export class ColumnTypeModule {}
+export class ColumnTypeModule { }

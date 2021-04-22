@@ -2,33 +2,35 @@ import { Action, createReducer, on } from '@ngrx/store';
 import {
     addColumnTypePending, addColumnTypeSuccess, addColumnTypeError,
     removeColumnTypePending, removeColumnTypeSuccess, removeColumnTypeError,
-    getColumnTypeSuccess, getColumnTypeError, clearColumnTypeError
+    getColumnTypeSuccess, getColumnTypeError, clearColumnTypeError, getColumnTypePending
 } from '../../actions/admin/column-type.action';
 import { IColumnTypeState } from '../../models/column-type/column-type.model';
 
 const initialState: IColumnTypeState = {
-    items: [],
+    items: null,
     error: null,
-    loaded: false,
     successOperation: false,
 };
 
 const columnTypesReducer = createReducer(
     initialState,
+    on(getColumnTypePending, (state) => {
+        return {
+            ...state,
+            successOperation: false
+        };
+    }),
     on(getColumnTypeSuccess, (state, action) => {
         return {
             ...state,
-            items: action.items,
-            loaded: true,
-            successOperation: false
+            items: action.items
         };
     }),
     on(getColumnTypeError, (state, action) => {
         return {
             ...state,
-            items: [],
-            error: action.error,
-            loaded: false
+            items: null,
+            error: action.error
         };
     }),
     on(addColumnTypePending, (state) => {

@@ -11,12 +11,11 @@ import { IClientState } from 'src/app/store/reducers/client';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  
   public error$: Observable<IError>;
-  public mapLoading$: Observable<boolean>;
+  public loading$: Observable<boolean>;
 
-  constructor(private store: Store<IClientState>) { 
-    this.mapLoading$ = this.store.select(s => s.locationState.loading);
+  constructor(private store: Store<IClientState>) {
+    this.loading$ = this.store.select(s => s.locationState.loading);
     this.error$ = this.store.select(s => s.locationState.error);
   }
 

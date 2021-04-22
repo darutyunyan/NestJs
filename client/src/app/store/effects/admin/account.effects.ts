@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { AuthService } from 'src/app/admin/shared/services/auth.service';
+import { AuthService } from 'src/app/admin-layout/shared/services/auth.service';
 import { loginError, loginPending, loginSuccess } from '../../actions/admin/account.action';
 import { IJwtSetting } from '../../models/acccount/account.moduel';
 

@@ -15,7 +15,6 @@ import { IClientState } from 'src/app/store/reducers/client';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent extends UnSubscriber implements OnInit {
-
   public loading$: Observable<boolean>;
   public product$: Observable<IGetProductByIdResponse>;
   public error$: Observable<IError>;

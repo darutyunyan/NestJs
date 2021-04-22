@@ -7,7 +7,4 @@ export class CreateProductDto {
 
     @IsNotEmpty()
     readonly productNameId: ObjectId;
-
-    @IsNotEmpty()
-    readonly columnTypeId: ObjectId;
 }

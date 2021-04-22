@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ProductService } from 'src/app/admin/shared/services/product.service';
+import { ProductService } from 'src/app/admin-layout/shared/services/product.service';
 import {
     addColumnTypePending, addColumnTypeSuccess, addColumnTypeError,
     removeColumnTypePending, removeColumnTypeSuccess, removeColumnTypeError,
@@ -13,7 +13,7 @@ import { IColumnTypeItem } from '../../models/column-type/column-type.model';
 @Injectable()
 export class ColumnTypeEffects {
     public getColumnTypes$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
-        ofType(getColumnTypePending, addColumnTypeSuccess, removeColumnTypeSuccess),
+        ofType(getColumnTypePending),
         mergeMap(() => this.productService.getColumnTypes()
             .pipe(
                 map((items: IColumnTypeItem[]) => {

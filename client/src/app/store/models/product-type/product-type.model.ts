@@ -2,7 +2,6 @@ import { IError } from '../error';
 
 export interface IProductTypeState {
     items: IProductTypeItem[];
-    loaded: boolean;
     successOperation: boolean;
     error: IError;
 }

@@ -1,0 +1,5 @@
+<div fxLayout="column">
+    <h1 class="admin-header" fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">{{(products$ | async)?.length > 0 ? 'Список продуктов' : 'Нет
+        продуктов' }}</h1>
+    <app-table-product *ngIf="(products$ | async)?.length" [products]="products$ | async"></app-table-product>
+</div>
