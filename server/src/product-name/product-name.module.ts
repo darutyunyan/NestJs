@@ -10,8 +10,8 @@ import { ProductName, ProductNameSchema } from "./schemas/product-name.schema";
 @Module({
     imports: [
         MongooseModule.forFeature([
-            { name: ProductType.name, schema: ProductTypeSchema },
             { name: ProductName.name, schema: ProductNameSchema },
+            { name: ProductType.name, schema: ProductTypeSchema },
             { name: ColumnType.name, schema: ColumnTypeSchema }
         ])
     ],

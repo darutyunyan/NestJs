@@ -17,6 +17,16 @@ export class ProductNameController {
     getAll(): Promise<ProductName[]> {
         return this.productNameService.getAll();
     }
+    
+    @Get('getRandomProductId')
+    getRandomProductIndex(): Promise<string> {
+        return this.productNameService.getRandomId();
+    }
+
+    @Get(':id')
+    getById(@Param('id') id: ObjectId): Promise<ProductName> {
+        return this.productNameService.getById(id);
+    }
 
     @Delete(':id')
     delete(@Param('id') id: ObjectId): Promise<ObjectId>  {

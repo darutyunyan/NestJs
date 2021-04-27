@@ -18,7 +18,21 @@ export class ProductTypeService {
     }
 
     async getAll(): Promise<ProductType[]> {
-        return await this.productTypeModel.find();
+        return await this.productTypeModel
+            .find()
+            .populate('productNames');
+    }
+
+    // Retrive ProductTypes that contains products.
+    async getAllProucts(): Promise<ProductType[]> {
+        const productTypes = await this.productTypeModel
+            .find()
+            .populate({
+                path: 'productNames',
+                match: { products: { $exists: true, $type: 'array', $ne: [] } }
+            })
+
+        return productTypes.filter(a => a.productNames.length);
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {

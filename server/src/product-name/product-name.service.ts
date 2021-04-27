@@ -49,6 +49,23 @@ export class ProductNameService {
             .populate('columnType');
     }
 
+    async getById(id: ObjectId): Promise<ProductName> {
+        return await this.productNameModel
+            .findById(id)
+            .populate('products')
+            .populate('columnType');
+    }
+
+    async getRandomId(): Promise<string> {
+        const productNames = await (await this.productNameModel.find())
+            .filter(pN => pN.products.length);
+
+        const MAX_INDEX = productNames.length;
+        const randomIndex = Math.floor(Math.random() * MAX_INDEX);
+
+        return productNames[randomIndex].id;
+    }
+
     async delete(id: ObjectId): Promise<ObjectId> {
         const products = await (await this.productNameModel.findById(id)).products;
         if (products.length) {
