@@ -45,14 +45,6 @@ export class AdminLayoutComponent extends UnSubscriber implements OnInit {
         this.router.navigate(['/']);
     }
 
-    public goLocationSettings(): void {
-        this.router.navigate(['/admin', 'add-location']);
-    }
-
-    public goLogPage(): void {
-        this.router.navigate(['/admin', 'log']);
-    }
-
     public logout(): void {
         this.auth.logout();
         this.router.navigate(['/']);

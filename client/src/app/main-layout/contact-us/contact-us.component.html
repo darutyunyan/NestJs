@@ -1,5 +1,6 @@
-<div class="main-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px" fxFlex.lt-md="90%" fxFlex.lt-xl="70%">
-    <mat-card class="mat-elevation-z8" fxLayout="column">
+<div class="main-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px" fxFlex.lt-md="90%"
+    fxFlex.lt-xl="70%">
+    <mat-card class="mat-elevation-z8" fxLayout="column" fxLayoutGap="20px">
         <p fxFlexAlign="center" class="mat-display-1">КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
         <div fxLayout="column" fxLayoutGap="20px">
             <span fxLayoutAlign="start center" fxLayoutGap="10px">
@@ -21,8 +22,15 @@
                 <a href="tg://resolve?domain=autovikuprus" class="fa fa-telegram" target="_blank"></a>
             </div>
         </div>
-        <p *ngIf="(error$ | async) == null && (loading$ | async) === false" fxFlexAlign="center" class="mat-display-1">СХЕМА ПРОЕЗДА</p>
-        <app-map *ngIf="(error$ | async) == null && (loading$ | async) === false" [zoom]="12" [mapSize]="'large'" [options]="null" [state]="null"></app-map>
+        <ng-container *ngIf="(error$ | async) == null && !(loading$ | async)">
+            <p fxFlexAlign="center" class="mat-display-1">СХЕМА ПРОЕЗДА</p>
+            <app-map [zoom]="12" [mapSize]="'large'" [options]="null" [state]="null"></app-map>
+        </ng-container>
+        <ng-container *ngIf="(loading$ | async)">
+            <div fxLayoutAlign="center center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </ng-container>
     </mat-card>
     <app-terms></app-terms>
 </div>

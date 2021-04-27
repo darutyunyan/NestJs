@@ -2,20 +2,17 @@ import { Action, createReducer, on } from '@ngrx/store';
 import {
     clearProductError, getProductByIdError, getProductByIdPending,
     getProductByIdSuccess, getProductsError, getProductsPending,
-    getProductsSuccess, sendFeedbackError, sendFeedbackPending, sendFeedbackSuccess,
+    getProductsSuccess, getRandomProductIdError, getRandomProductIdSuccess, sendFeedbackError, sendFeedbackPending, sendFeedbackSuccess,
     sendShortFeedbackError, sendShortFeedbackPending, sendShortFeedbackSuccess
 } from '../../actions/client/client.actions';
 import { IClientInitialState } from '../../models/client.model';
 
 const initialState: IClientInitialState = {
-    products: null,
-    productById: {
-        loading: false,
-        productName: null,
-        columnNames: [],
-        info: null,
-        error: null,
-    },
+    products: [],
+    productsLoading: false,
+    product: null,
+    productLoading: false,
+    randonProductId: null,
     feedback: {
         feedbackSending: false,
         feedbackError: false,
@@ -24,8 +21,7 @@ const initialState: IClientInitialState = {
         shortFeedbackSending: false,
         shortFeedbackError: false,
     },
-    error: null,
-    loading: false,
+    error: null
 };
 
 const clientReducer = createReducer(
@@ -33,51 +29,53 @@ const clientReducer = createReducer(
     on(getProductsPending, (state) => {
         return {
             ...state,
-            loading: true
+            productsLoading: true
         };
     }),
     on(getProductsSuccess, (state, action) => {
         return {
             ...state,
-            products: {
-                items: action.response.items
-            },
-            loading: false,
+            products: action.items,
+            productsLoading: false,
         };
     }),
     on(getProductsError, (state, action) => {
         return {
             ...state,
             error: action.error,
-            loading: false
+            productsLoading: false
         };
     }),
     on(getProductByIdPending, (state) => {
         return {
             ...state,
-            productById: {
-                loading: true
-            }
+            productLoading: true
         };
     }),
     on(getProductByIdSuccess, (state, action) => {
         return {
             ...state,
-            productById: {
-                loading: false,
-                productName: action.response.productName,
-                columnNames: action.response.columnNames,
-                info: action.response.info,
-            },
+            product: action.item,
+            productLoading: false
         };
     }),
     on(getProductByIdError, (state, action) => {
         return {
             ...state,
             error: action.error,
-            productById: {
-                loading: false
-            }
+            productLoading: false
+        };
+    }),
+    on(getRandomProductIdSuccess, (state, action) => {
+        return {
+            ...state,
+            randonProductId: action.id
+        };
+    }),
+    on(getRandomProductIdError, (state, action) => {
+        return {
+            ...state,
+            randonProductId: null
         };
     }),
     on(sendFeedbackPending, (state) => {

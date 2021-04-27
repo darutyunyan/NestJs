@@ -6,18 +6,22 @@
         <span class="logo" (click)="goHome()">AgroComplex</span>
         <span class="menu-spacer"></span>
         <div fxShow="true" fxHide.lt-md>
-            <a mat-button [routerLink]="['/admin','dashboard']"> Продукты </a>
-            <a mat-button [routerLink]="['/admin','add-product']"> Доб. продукт </a>
-            <a mat-button [routerLink]="['/admin','add-product-name']"> Доб. имя продукта </a>
-            <a mat-button [routerLink]="['/admin','add-column-type']"> Доб. тип таблицы </a>
-            <a mat-button [routerLink]="['/admin','add-product-type']"> Доб. вид продукции </a>
+            <a mat-button [routerLink]="['/admin','dashboard']" routerLinkActive="router-link-active-2"> Продукты </a>
+            <a mat-button [routerLink]="['/admin','add-product']" routerLinkActive="router-link-active-2"> Доб. продукт
+            </a>
+            <a mat-button [routerLink]="['/admin','add-product-name']" routerLinkActive="router-link-active-2"> Доб. имя
+                продукта </a>
+            <a mat-button [routerLink]="['/admin','add-column-type']" routerLinkActive="router-link-active-2"> Доб. тип
+                таблицы </a>
+            <a mat-button [routerLink]="['/admin','add-product-type']" routerLinkActive="router-link-active-2"> Доб. вид
+                продукции </a>
         </div>
-        <button mat-icon-button (click)="goLocationSettings()">
+        <a mat-icon-button [routerLink]="['/admin', 'add-location']" routerLinkActive="router-link-active-2">
             <mat-icon>location_on</mat-icon>
-        </button>
-        <button mat-icon-button (click)="goLogPage()">
+        </a>
+        <a mat-icon-button [routerLink]="['/admin', 'log']" routerLinkActive="router-link-active-2">
             <mat-icon>error</mat-icon>
-        </button>
+        </a>
         <button mat-icon-button (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>
         </button>
@@ -27,14 +31,19 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
         <mat-nav-list>
-            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','dashboard']"> Продукты </a>
-            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product']"> Добавить продукт
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','dashboard']"
+                routerLinkActive="router-link-active"> Продукты </a>
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product']"
+                routerLinkActive="router-link-active"> Добавить продукт
             </a>
-            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-name']"> Добавить имя
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-name']"
+                routerLinkActive="router-link-active"> Добавить имя
                 продукта </a>
-            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-column-type']"> Добавить тип
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-column-type']"
+                routerLinkActive="router-link-active"> Добавить тип
                 таблицы </a>
-            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-type']"> Добавить вид
+            <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/admin','add-product-type']"
+                routerLinkActive="router-link-active"> Добавить вид
                 продукции </a>
         </mat-nav-list>
     </mat-sidenav>

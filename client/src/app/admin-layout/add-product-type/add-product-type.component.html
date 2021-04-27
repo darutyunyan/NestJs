@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign=" stretch">
     <h1 class="admin-header" fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Добавление нового вида продукции</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column" #formDirective="ngForm">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-10" fxLayout="column" #formDirective="ngForm">
         <mat-form-field appearance="outline">
             <mat-label>Название</mat-label>
             <input matInput placeholder="Пример: Семена" formControlName="name" autocomplete="off">

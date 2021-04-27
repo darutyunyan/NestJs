@@ -9,9 +9,12 @@
             <a mat-list-item [routerLink]="['/home']" (click)="sidenav.close()" routerLinkActive="router-link-active">
                 ГЛАВНАЯ
             </a>
-            <a mat-list-item [routerLink]="['/products', 'first']" (click)="sidenav.close()" routerLinkActive="router-link-active">ПРОДУКЦИЯ</a>
-            <a mat-list-item [routerLink]="['/about']" (click)="sidenav.close()" routerLinkActive="router-link-active">О КОМПАНИИ</a>
-            <a mat-list-item [routerLink]="['/contactUs']" (click)="sidenav.close()" routerLinkActive="router-link-active">КОНТАКТЫ</a>
+            <a mat-list-item [routerLink]="['/products', 'first']" (click)="sidenav.close()"
+                routerLinkActive="router-link-active">ПРОДУКЦИЯ</a>
+            <a mat-list-item [routerLink]="['/about']" (click)="sidenav.close()" routerLinkActive="router-link-active">О
+                КОМПАНИИ</a>
+            <a mat-list-item [routerLink]="['/contactUs']" (click)="sidenav.close()"
+                routerLinkActive="router-link-active">КОНТАКТЫ</a>
         </mat-nav-list>
     </mat-sidenav>
 
@@ -52,7 +55,8 @@
                     <a mat-icon-button [routerLink]="['/home']" routerLinkActive="router-link-active">
                         <mat-icon>home</mat-icon>
                     </a>
-                    <a *ngIf="(firstProductId$ | async) != null" mat-button [routerLink]="['/products', firstProductId$ | async]"
+                    <a *ngIf="(randomProductId$ | async) !== null" mat-button
+                        [routerLink]="['/products', randomProductId$ | async]"
                         routerLinkActive="router-link-active">ПРОДУКЦИЯ</a>
                     <a mat-button [routerLink]="['/about']" routerLinkActive="router-link-active">О КОМПАНИИ </a>
                     <a mat-button [routerLink]="['/contactUs']" routerLinkActive="router-link-active">КОНТАКТЫ</a>

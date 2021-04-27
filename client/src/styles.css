@@ -10,8 +10,8 @@ a:hover {
 /* Start of common styles */
 
 .main-container {
-    margin: 60px auto;
-    min-height: 600px;
+    margin: 40px auto 75px auto;
+    min-height: 400px;
 }
 
 h1.mat-display-2{
@@ -49,6 +49,11 @@ h1.mat-display-2{
 
 .router-link-active {
     background-color: rgb(211, 203, 203) !important;
+}
+
+.router-link-active-2 {
+    background-color: #f4ffff !important;
+    color: #3f51b5 !important;
 }
 
 .overflow-auto {

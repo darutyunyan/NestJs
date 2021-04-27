@@ -1,8 +1,8 @@
-<h1>Виты продукции</h1>
-<ng-container *ngIf="(loading$ | async) === false; else loader">
+<ng-container *ngIf="!(loading$ | async); else loader">
+    <h1>Виты продукции</h1>
     <mat-nav-list *ngFor="let product of products$ | async">
-        <div mat-subheader>{{product.typeName.toUpperCase()}}</div>
-        <a mat-list-item [routerLink]="['/products', item.id]" routerLinkActive="router-link-active"  *ngFor="let item of product.items">
+        <div mat-subheader>{{product.name}}</div>
+        <a *ngFor="let item of product.productNames" [routerLink]="['/products', item._id]" mat-list-item  routerLinkActive="router-link-active">
             {{item.name}}
         </a>
     </mat-nav-list>

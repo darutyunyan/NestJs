@@ -3,12 +3,12 @@
     <div *ngIf="(loading$ | async) && ((error$ | async) == null)" fxLayoutAlign="center center" class="p-40">
         <mat-spinner></mat-spinner>
     </div>
-    <div *ngIf="(loading$ | async) == false" class="map-settings">
+    <div *ngIf="!(loading$ | async)" class="map-settings">
         <ya-map [zoom]="12" [center]="[(location$| async).lat, (location$| async).lng]" (yaclick)="leftClick($event)">
             <ya-placemark [geometry]="[(location$| async).lat , (location$| async).lng]"></ya-placemark>
         </ya-map>
     </div>
-    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-10" fxLayout="column">
         <mat-form-field appearance="outline">
             <mat-label>Lat</mat-label>
             <input matInput formControlName="lat" autocomplete="off">

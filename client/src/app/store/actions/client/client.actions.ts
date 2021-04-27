@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IGetAllResponse, IGetProductByIdResponse } from '../../models/client.model';
+import { IProductNameItem, IProductTypeItem } from '../../models/client.model';
 import { IError } from '../../models/error';
 
 export enum ClientActions {
@@ -10,6 +10,10 @@ export enum ClientActions {
     GetProductByIdPending = '[Product] Get product by id pending',
     GetProductByIdSuccess = '[Product] Get product by id success',
     GetProductByIdError = '[Product] Get product by id error',
+
+    GetRandomProductIdPending = '[Product] Get random product ID pending',
+    GetRandomProductIdSuccess = '[Product] Get random product ID success',
+    GetRandomProductIdError = '[Product] Get random product ID error',
 
     SendFeedbackPending = '[Feedback] Send feedback pending',
     SendFeedbackSuccess = '[Feedback] Send feedback success',
@@ -28,7 +32,7 @@ export const getProductsPending = createAction(
 
 export const getProductsSuccess = createAction(
     ClientActions.GetProductsSuccess,
-    props<{ response: IGetAllResponse }>()
+    props<{ items: IProductTypeItem[] }>()
 );
 
 export const getProductsError = createAction(
@@ -43,11 +47,25 @@ export const getProductByIdPending = createAction(
 
 export const getProductByIdSuccess = createAction(
     ClientActions.GetProductByIdSuccess,
-    props<{ response: IGetProductByIdResponse }>()
+    props<{ item: IProductNameItem }>()
 );
 
 export const getProductByIdError = createAction(
     ClientActions.GetProductByIdError,
+    props<{ error: IError }>()
+);
+
+export const getRandomProductIDPending = createAction(
+    ClientActions.GetRandomProductIdPending
+);
+
+export const getRandomProductIdSuccess = createAction(
+    ClientActions.GetRandomProductIdSuccess,
+    props<{ id: string }>()
+);
+
+export const getRandomProductIdError = createAction(
+    ClientActions.GetRandomProductIdError,
     props<{ error: IError }>()
 );
 

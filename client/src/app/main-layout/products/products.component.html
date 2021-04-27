@@ -1,26 +1,20 @@
-<div class="main-container" fxFlexFill fxLayout="column" fxLayoutGap="20px" fxFlex.lt-md="90%" fxFlex.lt-xl="80%">
-  <div fxLayout="row" fxLayoutGap="20px" class="overflow-auto p-20">
+<div class="main-container" fxFlexFill fxLayout="column" fxLayoutGap="40px" fxFlex.lt-md="90%" fxFlex.lt-xl="70%">
+    <h1 fxFlexAlign="center" class="mat-display-2">ИНФОРМАЦИЯ О ПРОДУКТЕ</h1>
 
-    <ng-container *ngIf="(error$ | async) === null; else errorMessage" class="width-700">
-      <div  fxFlex.lg="25%" fxFlex.lt-lg="35%" fxFlex.lt-sm="200px">
-        <app-left-menu></app-left-menu>
-      </div>
-
-      <div  fxFlex.lg="75%" fxFlex.lt-lg="65%" fxFlex.lt-sm="600px">
-        <ng-container *ngIf="(loading$ | async) === false; else loader">
-          <app-table [product]="product$ | async"></app-table>
+    <div fxLayout="row" fxLayoutGap="20px">
+        <ng-container *ngIf="(error$ | async) === null; else errorMessage" class="width-700">
+            <div fxFlex.lg="25%" fxFlex.lt-lg="35%" fxFlex.lt-sm="200px">
+                <app-left-menu></app-left-menu>
+            </div>
+            <div fxFlex.lg="75%" fxFlex.lt-lg="65%" fxFlex.lt-sm="600px">
+                <app-table [product]="product$ | async"></app-table>
+            </div>
         </ng-container>
-        <ng-template #loader>
-          <div fxFlexFill fxLayoutAlign="center center">
-            <mat-spinner></mat-spinner>
-          </div>
+        <ng-template #errorMessage>
+            <div fxFlexFill fxLayoutAlign="center center">
+                Произошла ошибка! Свяжитусь с нами!
+            </div>
         </ng-template>
-      </div>
-    </ng-container>
-    <ng-template #errorMessage>
-      <div fxFlexFill fxLayoutAlign="center center">
-          Произошла ошибка! Свяжитусь с нами!
-      </div>
-  </ng-template>
-  </div>
+    </div>
+    <app-terms></app-terms>
 </div>

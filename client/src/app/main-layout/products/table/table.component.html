@@ -1,15 +1,23 @@
-<h1>{{product.productName}}</h1>
-<table class="mat-table cdk-table mat-elevation-z8">
-    <thead>
-        <tr class="mat-header-row">
-            <th class="mat-header-cell" *ngFor="let columnName of product.columnNames" class="mat-header-cell">
-                {{columnName}}
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="mat-row" *ngFor="let info of product.info">
-            <td class="mat-cell" *ngFor="let item of info">{{item}}</td>
-        </tr>
-    </tbody>
-</table>
+<ng-container *ngIf="!(loading$ | async);else loader">
+    <h1>{{product?.productName}}</h1>
+    <table *ngIf="product !== null" class="mat-table cdk-table mat-elevation-z8">
+        <thead>
+            <tr class="mat-header-row">
+                <th class="mat-header-cell" *ngFor="let columnName of product.columns" class="mat-header-cell">
+                    {{columnName}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="mat-row" *ngFor="let info of product.values">
+                <td class="mat-cell" *ngFor="let item of info">{{item}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+
+<ng-template #loader>
+    <div fxFlexFill fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

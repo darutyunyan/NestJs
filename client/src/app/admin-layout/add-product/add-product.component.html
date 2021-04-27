@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="space-between stretch"
     *ngIf="(names$ | async)?.length > 0">
     <h1 class="admin-header" fxFlexAlign.lt-md="center" fxFlexAlign.lt-xl="end">Добавление продука</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-20" fxLayout="column"
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mat-elevation-z8 p-10" fxLayout="column"
         #formDirective="ngForm">
         <mat-form-field appearance="outline" class="hint-padding">
             <mat-label>Информация о продукте</mat-label>

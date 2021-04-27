@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, delay } from 'rxjs/operators';
 import { LocationService } from 'src/app/shared/services/location.service';
 import {
     addLocationError, addLocationPending, addLocationSuccess,
@@ -28,6 +28,7 @@ export class LocationEffects {
         ofType(getLocationPending, addLocationSuccess),
         mergeMap(() => this.locationService.get()
             .pipe(
+                delay(3000),
                 map((location: ILocation) => {
                     return getLocationSuccess({ location });
                 }),

@@ -1,32 +1,31 @@
-<div class="main-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px"
-    fxFlex.lt-md="90%" fxFlex.lt-xl="70%">
+<div class="main-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px" fxFlex.lt-md="90%"
+    fxFlex.lt-xl="70%">
     <h1 fxFlexAlign="center" class="mat-display-2">КАТАЛОГ ПРОДУКЦИИ НА {{getFullYear()}}</h1>
 
-    <ng-container *ngIf="((error$ | async) == null) && (loading$ | async) === false">
+    <ng-container *ngIf="((error$ | async) == null) && !(productsLoading$ | async)">
         <div *ngFor="let product of product$ | async" fxLayout="column" fxLayoutGap="40px">
             <mat-card class="mat-elevation-z8">
-                <h1 class="mb-0">{{ product.typeName }}</h1>
+                <h1 class="mb-0">{{ product.name }}</h1>
             </mat-card>
             <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-                <div class="p-10" *ngFor="let item of product.items">
-                    <app-product-card [name]="item.name" [typeName]="product.typeName" [productId]="item.id">
+                <div class="p-10" *ngFor="let productName of product.productNames">
+                    <app-product-card [productName]="productName" [typeName]="product.name">
                     </app-product-card>
                 </div>
             </div>
         </div>
-
-        <div *ngIf="(product$ | async) == null" fxLayoutAlign="center center">
+        <div *ngIf="(product$ | async).length == 0" fxLayoutAlign="center center">
             Продукция отсутствует. Приносим свои извинения!
         </div>
     </ng-container>
 
-    <ng-container *ngIf="((error$ | async) != null) && (loading$ | async) === false">
+    <ng-container *ngIf="((error$ | async) != null) && !(productsLoading$ | async)">
         <div fxLayoutAlign="center center">
             Произошла ошибка! Свяжитусь с нами!
         </div>
     </ng-container>
 
-    <ng-container *ngIf="(loading$ | async) && ((error$ | async) == null)">
+    <ng-container *ngIf="(productsLoading$ | async)">
         <div fxLayoutAlign="center center">
             <mat-spinner></mat-spinner>
         </div>

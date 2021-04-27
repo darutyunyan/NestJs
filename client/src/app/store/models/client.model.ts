@@ -1,43 +1,45 @@
 import { IError } from './error';
+import { IFeedbackState, IShortFeedbackState } from './feedback/feedback.module';
 
 export interface IClientInitialState {
-    products: IGetAllResponse;
-    productById: IGetProductByIdResponse;
+    products: IProductTypeItem[];
+    productsLoading: boolean;
+
+    product: IProductNameItem;
+    productLoading: boolean;
+
+    randonProductId: string;
+
     feedback: IFeedbackState;
     shortFeedback: IShortFeedbackState;
-    loading: boolean;
+
     error: IError;
 }
 
-export interface IGetAllResponse {
-    items: IGetAllItem[];
-    error: IError;
+export interface IProductTypeItem {
+    _id: string;
+    name: string;
+    productNames: IProductNameItem[];
 }
 
-export interface IGetAllItem {
-    typeName: string;
-    items: INameItem[];
+export interface IProductNameItem {
+    _id: string;
+    name: string;
+    products: string[] | IProductItem[];
+    columnType?: IColumnTypeItem;
 }
 
-export interface INameItem {
-    id: string;
+export interface IColumnTypeItem {
     name: string;
 }
 
-export interface IGetProductByIdResponse {
-    loading: boolean;
+export interface IProductItem {
+    info: string;
+}
+
+
+export interface ITableItem {
     productName: string;
-    columnNames: string[];
-    info: string[][];
-    error: IError;
-}
-
-export interface IFeedbackState {
-    feedbackSending: boolean;
-    feedbackError: boolean;
-}
-
-export interface IShortFeedbackState {
-    shortFeedbackSending: boolean;
-    shortFeedbackError: boolean;
+    columns: string[];
+    values: string[][];
 }

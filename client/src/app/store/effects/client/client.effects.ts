@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, CreateEffectMetadata, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, delay } from 'rxjs/operators';
 import { ClientProductService } from 'src/app/shared/services/client-product.service';
 import { ContactUsService } from 'src/app/shared/services/contact-us.service';
 import {
     getProductsPending, getProductsSuccess, getProductsError,
     getProductByIdPending, getProductByIdSuccess, getProductByIdError,
     sendFeedbackPending, sendFeedbackSuccess, sendFeedbackError, sendShortFeedbackPending,
-    sendShortFeedbackError, sendShortFeedbackSuccess
+    sendShortFeedbackError, sendShortFeedbackSuccess, getRandomProductIDPending, getRandomProductIdSuccess, getRandomProductIdError
 } from '../../actions/client/client.actions';
-import { IGetAllResponse, IGetProductByIdResponse } from '../../models/client.model';
+import { IProductNameItem, IProductTypeItem } from '../../models/client.model';
 import { IResponseError } from '../../models/error';
-
 
 @Injectable()
 export class ClientEffects {
@@ -20,12 +19,9 @@ export class ClientEffects {
         ofType(getProductsPending),
         mergeMap(() => this.productService.getAll()
             .pipe(
-                map((products: IGetAllResponse) => {
-                    if (products.error == null) {
-                        return getProductsSuccess({ response: products });
-                    } else {
-                        return getProductsError({ error: products.error });
-                    }
+                delay(2000),
+                map((items: IProductTypeItem[]) => {
+                    return getProductsSuccess({ items });
                 }),
                 catchError(
                     (httpError) => of(getProductsError({ error: { statusCode: httpError.status, message: httpError.message } }))
@@ -36,17 +32,28 @@ export class ClientEffects {
 
     public getProductById$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
         ofType(getProductByIdPending),
-        mergeMap((id) => this.productService.getProductById(id)
+        mergeMap((action) => this.productService.getProductById(action.id)
             .pipe(
-                map((products: IGetProductByIdResponse) => {
-                    if (products.error == null) {
-                        return getProductByIdSuccess({ response: products });
-                    } else {
-                        return getProductByIdError({ error: products.error });
-                    }
+                delay(2000),
+                map((item: IProductNameItem) => {
+                    return getProductByIdSuccess({ item });
                 }),
                 catchError(
                     (httpError) => of(getProductByIdError({ error: { statusCode: httpError.status, message: httpError.message } }))
+                )
+            )
+        )
+    ));
+
+    public getRandomProductId$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
+        ofType(getRandomProductIDPending),
+        mergeMap(() => this.productService.getRandomProductId()
+            .pipe(
+                map((id) => {
+                    return getRandomProductIdSuccess({ id });
+                }),
+                catchError(
+                    (httpError) => of(getRandomProductIdError({ error: { statusCode: httpError.status, message: httpError.message } }))
                 )
             )
         )

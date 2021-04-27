@@ -1,12 +1,30 @@
 import { createSelector } from '@ngrx/store';
-import { IGetAllResponse } from 'src/app/store/models/client.model';
+import { IProductNameItem, ITableItem } from 'src/app/store/models/client.model';
 import { IClientState } from '../../client';
 
-export const selectProducts = (state: IClientState) => state.clientState.products;
+export const product = (state: IClientState) => state.clientState.product;
 
-export const selectIdFirstProduct = createSelector(
-    selectProducts,
-    (state: IGetAllResponse) => {
-        return state?.items[0]?.items[0]?.id;
+export const selectProduct = createSelector(
+    product,
+    (state: IProductNameItem) => {
+        if (state == null) {
+            return null;
+        }
+
+        const columns = state.columnType.name.split('|');
+
+        const values = [];
+        state.products.forEach((p) => {
+            values.push(p.info.split('|'));
+
+        });
+
+        const obj: ITableItem = {
+            productName: state.name,
+            columns,
+            values
+        };
+
+        return obj;
     }
 );
