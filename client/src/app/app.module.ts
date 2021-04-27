@@ -33,42 +33,42 @@ import { TermsComponent } from './main-layout/terms/terms.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainLayoutComponent,
-    AboutComponent,
-    ContactUsComponent,
-    HomeComponent,
-    FooterComponent,
-    ProductCardComponent,
-    LeftMenuComponent,
-    TableComponent,
-    ErrorComponent,
-    ProductsComponent,
-    ShortFeedbackComponent,
-    SocialsInfoComponent,
-    LocationComponent,
-    OnlineRequestComponent,
-    MapComponent,
-    TermsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule.forRoot(),
-    StoreModule.forRoot(clientReducers),
-    EffectsModule.forRoot(clientEffects),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
-  ],
-  providers: [
-    ClientProductService,
-    ContactUsService,
-    LocationService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MainLayoutComponent,
+        AboutComponent,
+        ContactUsComponent,
+        HomeComponent,
+        FooterComponent,
+        ProductCardComponent,
+        LeftMenuComponent,
+        TableComponent,
+        ErrorComponent,
+        ProductsComponent,
+        ShortFeedbackComponent,
+        SocialsInfoComponent,
+        LocationComponent,
+        OnlineRequestComponent,
+        MapComponent,
+        TermsComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        SharedModule.forRoot(),
+        StoreModule.forRoot(clientReducers),
+        EffectsModule.forRoot(clientEffects),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+    ],
+    providers: [
+        ClientProductService,
+        ContactUsService,
+        LocationService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

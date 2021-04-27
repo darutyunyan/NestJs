@@ -1,4 +1,3 @@
-
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IProductNameItem } from 'src/app/store/models/client.model';

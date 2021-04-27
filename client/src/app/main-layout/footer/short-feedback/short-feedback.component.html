@@ -1,4 +1,5 @@
-<form fxLayout="column" [formGroup]="form" fxFlexFill fxLayoutAlign="space-between stretch" (ngSubmit)="submit()" #formDirective="ngForm">
+<form fxLayout="column" [formGroup]="form" fxFlexFill fxLayoutAlign="space-between stretch" (ngSubmit)="submit()"
+    #formDirective="ngForm">
     <span class="feedback">ЗАКАЗАТЬ ЗВОНОК</span>
     <mat-form-field appearance="outline">
         <mat-label>Ваше имя</mat-label>
@@ -14,5 +15,6 @@
         <mat-label>Дополнительная информация</mat-label>
         <input formControlName="message" matInput>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">ОТПРАВИТЬ <i *ngIf="sending$ | async" class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></button>
+    <button type="submit" mat-raised-button color="primary">ОТПРАВИТЬ <i *ngIf="sending$ | async"
+            class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></button>
 </form>

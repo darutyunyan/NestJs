@@ -23,47 +23,47 @@ import { environment } from 'src/environments/environment';
 
 
 @NgModule({
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    MatMenuModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatSelectModule,
-    MatDialogModule,
-    FlexLayoutModule,
-    AngularYandexMapsModule,
-  ],
-  providers: [
-    {
-      provide: YA_CONFIG,
-      useValue: {
-        apikey: '70dc92e1-6451-41a2-ac56-3897ba0ef065',
-        lang: 'ru_RU',
-      }
-    }]
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+        MatMenuModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTableModule,
+        MatSelectModule,
+        MatDialogModule,
+        FlexLayoutModule,
+        AngularYandexMapsModule,
+    ],
+    providers: [
+        {
+            provide: YA_CONFIG,
+            useValue: {
+                apikey: '70dc92e1-6451-41a2-ac56-3897ba0ef065',
+                lang: 'ru_RU',
+            }
+        }]
 })
 export class SharedModule {
-  public static forRoot(): ModuleWithProviders<any> {
-    return {
-      ngModule: SharedModule,
-      providers: [
-        {
-          provide: 'baseUrl',
-          useValue: environment.baseUrl
-        }
-      ]
-    };
-  }
+    public static forRoot(): ModuleWithProviders<any> {
+        return {
+            ngModule: SharedModule,
+            providers: [
+                {
+                    provide: 'baseUrl',
+                    useValue: environment.baseUrl
+                }
+            ]
+        };
+    }
 
 }

@@ -6,21 +6,21 @@ import { IError } from 'src/app/store/models/error';
 import { IClientState } from 'src/app/store/reducers/client';
 
 @Component({
-  selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.css']
+    selector: 'app-contact-us',
+    templateUrl: './contact-us.component.html',
+    styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  public error$: Observable<IError>;
-  public loading$: Observable<boolean>;
+    public error$: Observable<IError>;
+    public loading$: Observable<boolean>;
 
-  constructor(private store: Store<IClientState>) {
-    this.loading$ = this.store.select(s => s.locationState.loading);
-    this.error$ = this.store.select(s => s.locationState.error);
-  }
+    constructor(private store: Store<IClientState>) {
+        this.loading$ = this.store.select(s => s.locationState.loading);
+        this.error$ = this.store.select(s => s.locationState.error);
+    }
 
-  public ngOnInit(): void {
-    this.store.dispatch(getLocationPending());
-  }
+    public ngOnInit(): void {
+        this.store.dispatch(getLocationPending());
+    }
 
 }
