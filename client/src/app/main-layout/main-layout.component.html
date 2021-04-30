@@ -52,7 +52,7 @@
                     menu
                 </span>
                 <span class="logo" (click)="toHome()">AGRO COMPLEX</span>
-                <div fxHide.lt-md="true">
+                <div class="main-menu" fxHide.lt-md="true">
                     <a mat-icon-button [routerLink]="['/home']" routerLinkActive="router-link-active">
                         <mat-icon>home</mat-icon>
                     </a>
@@ -67,7 +67,6 @@
                 <span fxHide.gt-xs="true" class="material-icons" (click)="openOnlineRequest()">send</span>
             </mat-toolbar>
         </div>
-
         <div>
             <router-outlet></router-outlet>
         </div>
