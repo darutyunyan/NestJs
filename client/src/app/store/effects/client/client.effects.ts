@@ -49,6 +49,7 @@ export class ClientEffects {
         ofType(getRandomProductIDPending),
         mergeMap(() => this.productService.getRandomProductId()
             .pipe(
+                delay(2000),
                 map((id) => {
                     return getRandomProductIdSuccess({ id });
                 }),
@@ -61,14 +62,15 @@ export class ClientEffects {
 
     public sendFeedback$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
         ofType(sendFeedbackPending),
-        mergeMap((request) => this.contactUsService.sendFeedback(request)
+        mergeMap((action) => this.contactUsService.sendFeedback({
+            name: action.name,
+            phone: action.phone,
+            email: action.email,
+            productPosition: action.productPosition
+        })
             .pipe(
-                map((response: IResponseError) => {
-                    if (response.error == null) {
-                        return sendFeedbackSuccess();
-                    } else {
-                        return sendFeedbackError({ error: response.error });
-                    }
+                map(() => {
+                    return sendFeedbackSuccess();
                 }),
                 catchError(
                     (httpError) => of(sendFeedbackError({ error: { statusCode: httpError.status, message: httpError.message } }))
@@ -79,14 +81,14 @@ export class ClientEffects {
 
     public sendShortFeedback$: CreateEffectMetadata = createEffect(() => this.actions$.pipe(
         ofType(sendShortFeedbackPending),
-        mergeMap((request) => this.contactUsService.sendShortFeedback(request)
+        mergeMap((action) => this.contactUsService.sendShortFeedback({
+            name: action.name,
+            phone: action.phone,
+            message: action.message
+        })
             .pipe(
-                map((response: IResponseError) => {
-                    if (response.error == null) {
-                        return sendShortFeedbackSuccess();
-                    } else {
-                        return sendShortFeedbackError({ error: response.error });
-                    }
+                map(() => {
+                    return sendShortFeedbackSuccess();
                 }),
                 catchError(
                     (httpError) => of(sendShortFeedbackError({ error: { statusCode: httpError.status, message: httpError.message } }))

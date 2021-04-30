@@ -3,17 +3,17 @@
     <span class="feedback">ЗАКАЗАТЬ ЗВОНОК</span>
     <mat-form-field appearance="outline">
         <mat-label>Ваше имя</mat-label>
-        <input formControlName="name" matInput>
+        <input formControlName="name" matInput autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Ваш телефон</mat-label>
-        <input formControlName="phone" matInput>
+        <input formControlName="phone" matInput autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Дополнительная информация</mat-label>
-        <input formControlName="message" matInput>
+        <input formControlName="message" matInput autocomplete="off">
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary">ОТПРАВИТЬ <i *ngIf="sending$ | async"
             class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></button>

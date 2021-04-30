@@ -37,7 +37,6 @@ export interface IProductItem {
     info: string;
 }
 
-
 export interface ITableItem {
     productName: string;
     columns: string[];

@@ -27,7 +27,7 @@
             <app-map [zoom]="12" [mapSize]="'large'" [options]="null" [state]="null"></app-map>
         </ng-container>
         <ng-container *ngIf="(loading$ | async)">
-            <div fxLayoutAlign="center center">
+            <div class="loader" fxLayoutAlign="center center">
                 <mat-spinner></mat-spinner>
             </div>
         </ng-container>

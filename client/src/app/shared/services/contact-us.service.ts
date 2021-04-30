@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ContactUsService {
 
-  constructor(private http: HttpClient, @Inject('baseUrl') private baseUrl: string) { }
+    constructor(private http: HttpClient, @Inject('baseUrl') private baseUrl: string) { }
 
-  public sendFeedback(request): Observable<any> {
-    return this.http.post(`${this.baseUrl}/contactUs/feedback`, request);
-  }
+    public sendFeedback(request): Observable<any> {
+        return this.http.post(`${this.baseUrl}/contactUs/sendEmail`, request);
+    }
 
-  public sendShortFeedback(request): Observable<any> {
-    return this.http.post(`${this.baseUrl}/contactUs/shortFeedback`, request);
-  }
+    public sendShortFeedback(request): Observable<any> {
+        return this.http.post(`${this.baseUrl}/contactUs/sendShortEmail`, request);
+    }
 }

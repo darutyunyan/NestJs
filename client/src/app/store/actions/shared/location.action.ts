@@ -10,7 +10,6 @@ export enum LocationActions {
     GetLocationPending = '[Location] Get location pending',
     GetLocationSuccess = '[Location] Get location success',
     GetLocationError = '[Location] Get location error',
-
 }
 
 export const addLocationPending = createAction(

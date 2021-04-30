@@ -60,6 +60,10 @@ h1.mat-display-2{
     overflow: auto;
 }
   
+.loader {
+    padding: 40px 0;
+}
+
 /* End of common styles */
 
 /* Start of material styles */
