@@ -14,12 +14,10 @@ export class ColumnTypeController {
         return this.columnTypeService.create(dto);
     }
     
-    
     @Get()
     getAll() {
         return this.columnTypeService.getAll();
     }
-
 
     @Delete(':id')
     delete(@Param('id') id: ObjectId) {
